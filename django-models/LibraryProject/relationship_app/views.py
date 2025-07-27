@@ -6,31 +6,39 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
-# Role-checking decorator
-def check_role(role):
-    def decorator(user):
+# Role-checking function
+def role_required(role):
+    def check(user):
         return hasattr(user, 'userprofile') and user.userprofile.role == role
-    return user_passes_test(decorator)
+    return user_passes_test(check)
 
+# Admin view
 @login_required
-@check_role('Admin')
+@user_passes_test(lambda u: u.is_authenticated)
+@role_required('Admin')
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
+# Librarian view
 @login_required
-@check_role('Librarian')
+@user_passes_test(lambda u: u.is_authenticated)
+@role_required('Librarian')
 def librarian_view(request):
     return render(request, 'relationship_app/librarian_view.html')
 
+# Member view
 @login_required
-@check_role('Member')
+@user_passes_test(lambda u: u.is_authenticated)
+@role_required('Member')
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
+# List books
 def list_books(request):
     books = Book.objects.all()
     return render(request, "relationship_app/list_books.html", {"books": books})
 
+# Library detail view
 class LibraryDetailView(DetailView):
     model = Library
     template_name = "relationship_app/library_detail.html"
