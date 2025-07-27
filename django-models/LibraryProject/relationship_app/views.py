@@ -6,14 +6,36 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import render
+from .models import UserProfile
+
+def check_role(role):
+    def decorator(user):
+        return hasattr(user, 'userprofile') and user.userprofile.role == role
+    return user_passes_test(decorator)
+
+@login_required
+@check_role('Admin')
+def admin_view(request):
+    return render(request, 'relationship_app/admin_view.html')
+
+@login_required
+@check_role('Librarian')
+def librarian_view(request):
+    return render(request, 'relationship_app/librarian_view.html')
+
+@login_required
+@check_role('Member')
+def member_view(request):
+    return render(request, 'relationship_app/member_view.html')
 
 
-# ✅ Function-based view: List all books
 def list_books(request):
     books = Book.objects.all()  # <-- This line was missing
     return render(request, "relationship_app/list_books.html", {"books": books})  # <-- Template path is correct
 
-# ✅ Class-based view: Show details for a specific library
+
 class LibraryDetailView(DetailView):
     model = Library
     template_name = "relationship_app/library_detail.html"

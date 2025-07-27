@@ -13,7 +13,12 @@ from .views import (
     register_view,
     login_view,
     logout_view,
+    admin_view,
+    librarian_view,
+    member_view,
+
 )
+ 
 
 urlpatterns = [
     path('books/', views.list_books, name='list_books'),
@@ -27,6 +32,10 @@ urlpatterns = [
 
     # ✅ Logout using built-in class-based view
     path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
+    path('admin-dashboard/', admin_view, name='admin_view'),
+    path('librarian-dashboard/', librarian_view, name='librarian_view'),
+    path('member-dashboard/', member_view, name='member_view'),
+
 ]
 
 
