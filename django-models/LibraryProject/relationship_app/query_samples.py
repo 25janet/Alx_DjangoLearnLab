@@ -1,7 +1,7 @@
 import os
 import django
 
-# SETUP DJANGO ENVIRONMENT
+# Setup Django environment
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LibraryProject.settings')
 django.setup()
 
@@ -21,15 +21,15 @@ def run_queries():
     library_name = "Central Library"
     try:
         library = Library.objects.get(name=library_name)
-        books_in_library = library.books.all()  # This uses related_name='books'
+        books_in_library = library.books.all()
         print(f"Books in {library.name}: {[book.title for book in books_in_library]}")
     except Library.DoesNotExist:
         print(f"No library found with name '{library_name}'")
 
-    # 3. Retrieve the librarian for a specific library
+    # 3. Retrieve the librarian for a specific library (EXPLICIT QUERY)
     try:
         library = Library.objects.get(name=library_name)
-        librarian = library.librarian  # This uses related_name='librarian'
+        librarian = Librarian.objects.get(library=library)  # 👈 This is the missing line
         print(f"Librarian for {library.name}: {librarian.name}")
     except Library.DoesNotExist:
         print(f"No library found with name '{library_name}'")
