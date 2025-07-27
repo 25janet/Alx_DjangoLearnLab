@@ -35,6 +35,9 @@ urlpatterns = [
     path('admin-role/', views.admin_view, name='admin_view'),
     path('librarian-role/', views.librarian_view, name='librarian_view'),
     path('member-role/', views.member_view, name='member_view'),
+    path('book/add/', views.add_book_view, name='add_book'),
+    path('book/<int:book_id>/edit/', views.edit_book_view, name='edit_book'),
+    path('book/<int:book_id>/delete/', views.delete_book_view, name='delete_book'),
 ]
 
 
