@@ -8,9 +8,9 @@ class Book(models.Model):
 
 # Create your models here.
 from django.contrib.auth.models import AbstractUser 
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import UserManager
 from django.db import models
-class CustomUserManager(BaseUserManager):
+class CustomUserManager(UserManager):
     def create_user(self, username, password=None, **extra_fields):
         if not username:
             raise ValueError('The Username field must be set')
