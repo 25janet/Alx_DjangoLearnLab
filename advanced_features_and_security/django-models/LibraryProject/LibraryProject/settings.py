@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 #Custom user model
 AUTH_USER_MODEL = 'relationship_app.CustomUser'
+# Custom user model manager
+AUTH_USER_MODEL = 'bookshelf.CustomUser'  # If you have a custom user model in the bookshelf app
 #custom user model manager
 
 #add media configurations
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookshelf.apps.BookshelfConfig',
     'relationship_app',
+    'bookshelf',
 ]
 
 MIDDLEWARE = [
