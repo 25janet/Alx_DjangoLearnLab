@@ -7,6 +7,7 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = ('publication_year',)
 
 # Register your models here.
+# admin.py
 # accounts/admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin

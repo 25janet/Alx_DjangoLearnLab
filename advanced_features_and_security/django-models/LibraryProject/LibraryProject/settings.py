@@ -27,16 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-#Custom user model
-AUTH_USER_MODEL = 'relationship_app.CustomUser'
-# Custom user model manager
-AUTH_USER_MODEL = 'bookshelf.CustomUser'  # If you have a custom user model in the bookshelf app
-#custom user model manager
-
-#add media configurations
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
 
 # Application definition
 
@@ -49,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookshelf.apps.BookshelfConfig',
     'relationship_app',
-    'bookshelf',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +81,11 @@ DATABASES = {
     }
 }
 
-
+#custom user model
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
+# Add media configuration for profile photo
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
