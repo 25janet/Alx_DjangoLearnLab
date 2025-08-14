@@ -1,0 +1,253 @@
+/* ===================
+    Global Styles
+=================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F5F7FA;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* ===================
+    Navbar
+=================== */
+header {
+    background:#430f58;
+    padding: 15px 30px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    background: #FF6584;
+}
+
+/* ===================
+    Hero Section
+=================== */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background:linear-gradient(rgb(21, 13, 107) 1.1%, rgb(188, 16, 80) 130.5%);;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: #FF6584;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background 0.3s;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: #e65572;
+}
+
+/* ===================
+    Sections
+=================== */
+.section {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section:nth-of-type(even) {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+}
+
+.section:nth-of-type(odd) {
+    background-color: #F5F7FA;
+}
+
+.section h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #6C63FF;
+    font-size: 1.8rem;
+}
+
+/* ===================
+    Cards
+=================== */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    color: #6C63FF;
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+}
+
+.card small {
+    color: #888;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.card p {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.card .btn {
+    align-self: flex-start;
+    padding: 8px 16px;
+    background: #6C63FF;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.card .btn:hover {
+    background: #5a53d4;
+}
+
+/* Delete Button Style */
+.delete-btn {
+    background: #FF6584 !important;
+}
+
+.delete-btn:hover {
+    background: #e65572 !important;
+}
+
+/* ===================
+    Forms
+=================== */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: auto;
+}
+
+input, textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+/* ===================
+    Team Section
+=================== */
+.team-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.team-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.team-card h3 {
+    margin-top: 10px;
+    color: #6C63FF;
+}
+
+/* ===================
+    Footer
+=================== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #6C63FF;
+    color: white;
+    margin-top: 40px;
+}
