@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 from django.contrib.auth.models import User
-class BlogPost(models.Model):
+class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_posts")
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -15,7 +15,7 @@ class BlogPost(models.Model):
         null=True,
         related_name="related_posts"
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    published_date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
