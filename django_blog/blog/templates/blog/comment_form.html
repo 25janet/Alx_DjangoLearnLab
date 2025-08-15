@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if object %}Edit Comment{% else %}New Comment{% endif %}</title>
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+</head>
+<body>
+    <form method="post" class="profile-form">
+        {% csrf_token %}
+        <h2>{% if object %}Edit Comment{% else %}Add Comment{% endif %}</h2>
+        {{ form.as_p }}
+        <button type="submit">{% if object %}Update{% else %}Post{% endif %}</button>
+    </form>
+    <a href="{{ object.post.get_absolute_url }}">Back to Post</a>
+</body>
+</html>
