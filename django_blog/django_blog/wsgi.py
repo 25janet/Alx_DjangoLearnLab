@@ -1,5 +1,5 @@
 """
-WSGI config for influencer_hub project.
+WSGI config for django_blog project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

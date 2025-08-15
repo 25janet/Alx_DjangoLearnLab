@@ -1,5 +1,5 @@
 """
-ASGI config for influencer_hub project.
+ASGI config for django_blog project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
