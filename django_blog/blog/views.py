@@ -130,7 +130,7 @@ def search_posts(request):
         Q(tags__name__icontains=query)
     ).distinct()
     return render(request, 'blog/search_results.html', {'posts': results, 'query': query})
-class PostsByTagListView(ListView):
+class PostByTagListView(ListView):  
     model = Post
     template_name = 'blog/post_list.html'
     context_object_name = 'posts'

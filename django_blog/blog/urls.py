@@ -30,5 +30,5 @@ urlpatterns = [
     path('search/', search_posts, name='search-posts'),
 
     # Posts filtered by tag
-    path('tags/<slug:tag_slug>/', PostsByTagListView.as_view(), name='posts-by-tag'),
+    path('tags/<slug:tag_slug>/', PostByTagListView.as_view(), name='posts-by-tag'),
 ]
