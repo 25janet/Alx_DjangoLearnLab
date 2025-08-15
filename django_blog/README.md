@@ -1,5 +1,5 @@
-##Hi!My name is Janet John an alx student doing my final project.I am unsure of my work, feel free to correct me if there is any bugs/error.
-##this is my first ever big project to do, I am very excited
+Hi! My name is Janet John, an Alx student doing my final project. I am unsure of my work, feel free to correct me if there is any bugs/error.
+This is my first ever big project to do,I am very excited
 
 ---
 
@@ -203,6 +203,7 @@ input[type="text"] {
 * Passwords securely hashed (PBKDF2)
 * **CSRF protection** active on all forms
 * Purple theme used throughout CSS for visual appeal
+
 
 
 
