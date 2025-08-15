@@ -36,7 +36,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'influencer_hub.urls'
+ROOT_URLCONF = 'django_blog.urls'
 
 # ✅ Added TEMPLATES configuration so admin can work
 TEMPLATES = [
@@ -55,7 +55,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'influencer_hub.wsgi.application'
+WSGI_APPLICATION = 'django_blog.wsgi.application'
 
 # Database (example with SQLite for dev)
 DATABASES = {
