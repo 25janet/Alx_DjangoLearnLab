@@ -5,12 +5,21 @@ from rest_framework.response import Response
 from .models import Book
 from .serializers import BookSerializer
 from datetime import date
+from django_filters.rest_framework import DjangoFilterBackend
 
 # List all books - anyone can view
 class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    # Enable filtering + searching
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter]
+    filterset_fields = ['title', 'author__name', 'publication_year']
+    search_fields = ['title', 'author__name']
+    # Ordering
+    ordering_fields = ['title', 'publication_year']  # fields users can sort by
+    ordering = ['publication_year']  
+
 
 # Retrieve a single book - anyone can view
 class BookDetailView(generics.RetrieveAPIView):
