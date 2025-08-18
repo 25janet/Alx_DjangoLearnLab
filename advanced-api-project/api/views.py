@@ -3,7 +3,8 @@ from rest_framework import generics, status, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import rest_framework 
+from rest_framework import DjangoFilterBackend
 from datetime import date
 
 from .models import Book
