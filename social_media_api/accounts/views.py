@@ -12,23 +12,24 @@ from .models import CustomUser
 User = get_user_model()
 
 
-class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()  # ✅ fixed typo
+class RegisterView(generics.GenericAPIView):  
+    queryset = CustomUser.objects.all()       
     serializer_class = RegisterSerializer
 
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        user = User.objects.get(id=response.data["id"])
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
         token, _ = Token.objects.get_or_create(user=user)
         return Response({
             "token": token.key,
-            "user": response.data
+            "user": UserSerializer(user).data
         }, status=status.HTTP_201_CREATED)
 
 
 class LoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
-        response = super().post(request, *args, **kwargs)  # ✅ call super first
+        response = super().post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
         user = User.objects.get(id=token.user_id)
         return Response({
