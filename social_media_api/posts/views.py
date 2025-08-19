@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import generics, permissions, viewsets, filters, status
 from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment, Like
@@ -101,15 +100,14 @@ class ToggleLikePostView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
-        post = get_object_or_404(Post, pk=pk)
+        # ✅ using generics.get_object_or_404 (not django.shortcuts)
+        post = generics.get_object_or_404(Post, pk=pk)
         like, created = Like.objects.get_or_create(user=request.user, post=post)
 
         if not created:
-            # Already liked → unlike
             like.delete()
             return Response({"detail": "Post unliked successfully."}, status=status.HTTP_200_OK)
 
-        # New like → create notification
         if post.author != request.user:
             Notification.objects.create(
                 recipient=post.author,
