@@ -10,3 +10,20 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+    following = models.ManyToManyField(
+        'self',
+        symmetrical=False,
+        related_name='followers',
+        blank=True
+    )
+    def follow(self, user):
+        """Follow another user"""
+        self.following.add(user)
+
+    def unfollow(self, user):
+        """Unfollow another user"""
+        self.following.remove(user)
+
+    def is_following(self, user):
+        """Check if following another user"""
+        return self.following.filter(id=user.id).exists()
