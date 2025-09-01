@@ -81,11 +81,7 @@ DATABASES = {
     }
 }
 
-#custom user model
-AUTH_USER_MODEL = 'bookshelf.CustomUser'
-# Add media configuration for profile photo
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 

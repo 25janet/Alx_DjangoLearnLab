@@ -11,7 +11,13 @@ from .models import CustomUser
 
 User = get_user_model()
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
+@api_view(['GET'])
+def accounts_landing(request):
+    return render(request, "accounts/landing.html")
+    
 class RegisterView(generics.GenericAPIView):  
     queryset = CustomUser.objects.all()       
     serializer_class = RegisterSerializer

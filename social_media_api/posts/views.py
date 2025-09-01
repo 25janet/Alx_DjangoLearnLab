@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from notifications.models import Notification
+from rest_framework.views import APIView
 
 
 # ------------------------
@@ -96,24 +97,37 @@ def feed(request):
 # ------------------------
 # Like Toggle View
 # ------------------------
-class ToggleLikePostView(generics.GenericAPIView):
+
+    
+class LikePostView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
-        # ✅ using generics.get_object_or_404 (not django.shortcuts)
         post = generics.get_object_or_404(Post, pk=pk)
         like, created = Like.objects.get_or_create(user=request.user, post=post)
 
-        if not created:
+        if created:
+            # send notification if not liking own post
+            if post.author != request.user:
+                Notification.objects.create(
+                    recipient=post.author,
+                    actor=request.user,
+                    verb="liked",
+                    target=post
+                )
+            return Response({"detail": "Post liked successfully."}, status=status.HTTP_201_CREATED)
+
+        return Response({"detail": "You already liked this post."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UnlikePostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        post = generics.get_object_or_404(Post, pk=pk)
+        try:
+            like = Like.objects.get(user=request.user, post=post)
             like.delete()
             return Response({"detail": "Post unliked successfully."}, status=status.HTTP_200_OK)
-
-        if post.author != request.user:
-            Notification.objects.create(
-                recipient=post.author,
-                actor=request.user,
-                verb="liked",
-                target=post
-            )
-
-        return Response({"detail": "Post liked successfully."}, status=status.HTTP_201_CREATED)
+        except Like.DoesNotExist:
+            return Response({"detail": "You have not liked this post."}, status=status.HTTP_400_BAD_REQUEST)

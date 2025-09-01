@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Social Media API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    header {
+      background: #4B0082;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    h1 { margin: 0; }
+    p { margin: 10px 0; }
+
+    .links {
+      margin: 20px auto;
+      background: #6A5ACD;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 800px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .links a {
+      display: block;
+      margin: 8px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+    }
+    .links a:hover {
+      color: #FFD700;
+    }
+
+    .section {
+      background: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 8px;
+      max-width: 800px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .endpoint {
+      border-left: 5px solid #4B0082;
+      padding-left: 15px;
+      margin-bottom: 20px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 0.9em;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🚀 Welcome to Social Media API</h1>
+    <p>Simple API for user accounts, posts, and notifications</p>
+  </header>
+
+  <p style="text-align:center;">Choose an endpoint to explore:</p>
+  <div class="links">
+    <a href="/admin/">Admin Panel</a>
+    <a href="/api/accounts/register/">Register</a>
+    <a href="/api/accounts/login/">Login (POST only - use Postman/curl)</a>
+    <a href="/api/accounts/profile/">Profile</a>
+    <a href="/api/posts/">Posts</a>
+    <a href="/api/notifications/">Notifications</a>
+  </div>
+
+  <div class="section">
+    <h2>Authentication & Accounts</h2>
+
+    <div class="endpoint">
+      <h3>🔹 Register</h3>
+      <p><code>POST /api/accounts/register/</code></p>
+      <p>Create a new user account.</p>
+      <pre>{
+  "username": "janet",
+  "email": "janet@example.com",
+  "password": "securepassword123"
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <h3>🔹 Login</h3>
+      <p><code>POST /api/accounts/login/</code></p>
+      <p>Authenticate user and return token.</p>
+      <pre>{
+  "username": "janet",
+  "password": "securepassword123"
+}</pre>
+    </div>
+
+    <div class="endpoint">
+      <h3>🔹 Profile</h3>
+      <p><code>GET /api/accounts/profile/</code></p>
+      <p>Retrieve or update your account info (requires token).</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Social Features</h2>
+
+    <div class="endpoint">
+      <h3>🔹 Follow</h3>
+      <p><code>POST /api/accounts/follow/&lt;user_id&gt;/</code></p>
+      <p>Follow a user by ID.</p>
+    </div>
+
+    <div class="endpoint">
+      <h3>🔹 Unfollow</h3>
+      <p><code>POST /api/accounts/unfollow/&lt;user_id&gt;/</code></p>
+      <p>Unfollow a user by ID.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Posts & Notifications</h2>
+
+    <div class="endpoint">
+      <h3>🔹 Posts</h3>
+      <p><code>GET /api/posts/</code></p>
+      <p>Fetch all posts (or create new with POST).</p>
+    </div>
+
+    <div class="endpoint">
+      <h3>🔹 Notifications</h3>
+      <p><code>GET /api/notifications/</code></p>
+      <p>Get your notifications.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 ALX Janet Project</p>
+  </footer>
+</body>
+</html>
