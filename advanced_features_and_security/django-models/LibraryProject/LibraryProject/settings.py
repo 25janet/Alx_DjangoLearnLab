@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#egc&&-ukh9l^dk*&r*_#z9z^j7uf-0^m)ye4z@7jq5iloj20x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookshelf.apps.BookshelfConfig',
     'relationship_app',
+    'csp',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware'
 ]
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net")  # Allow trusted CDN
+CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")
+CSP_IMG_SRC = ("'self'", "data:")
 
 ROOT_URLCONF = 'LibraryProject.urls'
 
@@ -122,3 +128,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = "bookshelf.CustomUser"
+# ✅ Allowed hosts
+ALLOWED_HOSTS = ["yourdomain.com", "www.yourdomain.com"]
+
+# ✅ Browser-side protections
+SECURE_BROWSER_XSS_FILTER = True  
+SECURE_CONTENT_TYPE_NOSNIFF = True  
+X_FRAME_OPTIONS = "DENY"  # Prevent clickjacking  
+
+# ✅ Enforce HTTPS-only cookies
+CSRF_COOKIE_SECURE = True  
+SESSION_COOKIE_SECURE = True  
+
+ ✅ Use strong password validation
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+]
+
+# ✅ Redirect HTTP → HTTPS (requires reverse proxy or SSL setup)
+SECURE_SSL_REDIRECT = True

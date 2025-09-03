@@ -1,17 +1,13 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Delete Post</title>
-    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
-</head>
-<body>
-    <h2>Delete Post</h2>
-    <p>Are you sure you want to delete "{{ object.title }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Confirm Delete</button>
-    </form>
-    <a href="{% url 'post-detail' object.pk %}">Cancel</a>
-</body>
-</html>
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h1>Delete Post</h1>
+<p>Are you sure you want to delete "{{ object.title }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>
+
+<p><a href="{% url 'blog:post_detail' object.pk %}">Cancel</a></p>
+{% endblock %}
