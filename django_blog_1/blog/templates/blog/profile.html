@@ -1,17 +1,80 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-container {
+            max-width: 600px; /* wider than a small rectangle */
+            width: 90%;
+            margin: 50px auto; /* center vertically and horizontally */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .profile-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-container form p {
+            margin-bottom: 15px;
+        }
+
+        .profile-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .profile-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-container a {
+            text-decoration: none;
+            color: #007bff;
+            text-align: center;
+            margin-top: 15px;
+            display: block;
+        }
+
+        .profile-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <form method="post" class="profile-form">
+    <div class="profile-container">
         <h2>Profile</h2>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update Profile</button>
-        <p><a href="{% url 'logout' %}">Logout</a></p>
-    </form>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Profile</button>
+        </form>
+        <a href="{% url 'blog:logout' %}">Logout</a>
+    </div>
 </body>
 </html>

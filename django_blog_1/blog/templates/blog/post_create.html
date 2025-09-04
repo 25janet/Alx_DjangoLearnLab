@@ -7,10 +7,10 @@
     <p><small>By {{ object.author }} on {{ object.created_at|date:"M d, Y H:i" }}</small></p>
 
     {% if user == object.author %}
-        <a href="{% url 'blog:post_update' object.pk %}">Edit</a> |
-        <a href="{% url 'blog:post_delete' object.pk %}">Delete</a>
+        <a href="{% url 'blog:post-update' object.pk %}">Edit</a> |
+        <a href="{% url 'blog:post-delete' object.pk %}">Delete</a>
     {% endif %}
 
-    <p><a href="{% url 'blog:post_list' %}">← Back to posts</a></p>
+    <p><a href="{% url 'blog:post-list' %}">← Back to posts</a></p>
 </div>
 {% endblock %}

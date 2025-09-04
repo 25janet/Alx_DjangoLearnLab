@@ -2,10 +2,11 @@
 from django.urls import path
 from .views import (
     register_view, login_view, logout_view, profile_view,
-    PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView,
+    PostDetailView, PostCreateView, PostUpdateView, PostDeleteView,PostListView,
     CommentCreateView, CommentUpdateView, CommentDeleteView,
-    PostsByTagListView, search_posts
+    PostByTagListView, search_posts,
 )
+app_name = "blog"
 
 urlpatterns = [
     # Post CRUD

@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>{% if object %}Edit Post{% else %}New Post{% endif %}</title>
-    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
 </head>
 <body>
     <form method="post" class="profile-form">
@@ -12,6 +12,6 @@
         {{ form.as_p }}
         <button type="submit">{% if object %}Update{% else %}Create{% endif %}</button>
     </form>
-    <a href="{% url 'post-list' %}">Back to Posts</a>
+    <a href="{% url 'blog:post-list' %}">Back to Posts</a>
 </body>
 </html>

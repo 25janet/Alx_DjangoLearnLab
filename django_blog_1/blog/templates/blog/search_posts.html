@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results</h1>
+
+        <!-- Search Form -->
+        <form method="get" action="{% url 'blog:search-posts' %}" class="profile-form">
+            <input type="text" name="q" placeholder="Search posts..." value="{{ request.GET.q }}">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if posts %}
+            <p><strong>{{ posts.count }} result{{ posts.count|pluralize }} found for "{{ request.GET.q }}"</strong></p>
+            {% for post in posts %}
+                <div class="post-card">
+                    <h3><a href="{% url 'blog:post-detail' post.pk %}">{{ post.title }}</a></h3>
+                    <p>{{ post.content|truncatewords:30 }}</p>
+                    <p><small>By {{ post.author }} on {{ post.created_at|date:"M d, Y" }}</small></p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No posts found for "<strong>{{ request.GET.q }}</strong>". Try another search.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

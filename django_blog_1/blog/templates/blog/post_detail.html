@@ -13,8 +13,8 @@
 
         {% if user == object.author %}
             <p>
-                <a href="{% url 'post-update' object.pk %}">Edit Post</a> |
-                <a href="{% url 'post-delete' object.pk %}">Delete Post</a>
+                <a href="{% url 'blog:post-update' object.pk %}">Edit Post</a> |
+                <a href="{% url 'blog:post-delete' object.pk %}">Delete Post</a>
             </p>
         {% endif %}
 
@@ -23,7 +23,7 @@
         <!-- Tags Section -->
         <p>Tags: 
             {% for tag in object.tags.all %}
-                <a href="{% url 'posts-by-tag' tag.slug %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+                <a href="{% url 'blog:posts-by-tag' tag.slug %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
             {% empty %}
                 No tags
             {% endfor %}
