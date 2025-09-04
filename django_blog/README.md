@@ -1,11 +1,7 @@
 Hi! My name is Janet John, an Alx student doing my final project. I am unsure of my work, feel free to correct me if there is any bugs/error.
 This is my first ever big project to do,I am very excited
 
-# **So i had to redo my Work Again due to many errors in the first project**
-# So this is my second version
-# This is finally my Final Project
-
-
+#this is my first version full of errors and all
 ---
 
 # Django Blog Project 💜
